@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+{% for host in dnsmasq_records_a %}
+{{ host.ip }} {{ host.domain }}
+{% endfor %}

@@ -1,0 +1,30 @@
+# {{ ansible_managed }}
+port=53
+{% if dnsmasq_interface != "" %}
+interface={{ dnsmasq_interface }}
+{% endif %}
+{% if dnsmasq_address != "" %}
+listen-address={{ dnsmasq_address }}
+{% endif %}
+
+domain-needed
+bogus-priv
+{% if dnsmasq_dnssec %}
+dnssec
+{% endif %}
+{% if dnsmasq_domain %}
+expand-hosts
+domain={{ dnsmasq_domain }}
+local=/{{ dnsmasq_domain }}/
+{% endif %}
+
+addn-hosts=/etc/dnsmasq.d/addn_hosts
+
+conf-dir=/etc/dnsmasq.d/,*.conf
+
+{% if dnsmasq_dhcp_no_route %}
+dhcp-option=3
+{% endif %}
+{% if dnsmasq_dhcp_range != {} %}
+dhcp-range={{ dnsmasq_dhcp_range.start }},{{ dnsmasq_dhcp_range.end }}
+{% endif %}

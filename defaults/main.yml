@@ -1,0 +1,41 @@
+---
+dnsmasq_interface: ""
+dnsmasq_address: ""
+
+dnsmasq_dnssec: False
+
+dnsmasq_domain: "local"
+
+dnsmasq_records_a: []
+#dnsmasq_records_a:
+#- name: hostname
+#  ip: 192.168.0.6
+
+dnsmasq_records_srv: []
+#dnsmasq_records_srv:
+#- service: _ldap._tcp.example.com
+#  address: ldapserver.example.com
+#  port: 389
+#  prio: 1 # optional parameter
+
+dnsmasq_records_ptr: []
+#dnsmasq_records_ptr:
+#- address: _http._tcp.dns-sd-services
+#  text: "New Employee Page._http._tcp.dns-sd-services"
+
+dnsmasq_records_txt: []
+#dnsmasq_records_txt:
+#- address: example.com
+#  text: "v=spf1 a -all"
+
+dnsmasq_dhcp_no_route: False
+dnsmasq_dhcp_range: {}
+#dnsmasq_dhcp_range:
+#  start: 192.168.0.0
+#  end: 192.168.0.255
+
+dnsmasq_dhcp_mac: []
+#dnsmasq_dhcp_mac:
+#- mac:  00:00:DE:AD:BE:EF
+#  name: domainname
+#  ip:   192.168.0.5

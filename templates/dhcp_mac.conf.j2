@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+{% for host in dnsmasq_dhcp_mac %}
+dhcp-host={{ host.mac }},{{ host.name }},{{ host.ip }}
+{% endfor %}

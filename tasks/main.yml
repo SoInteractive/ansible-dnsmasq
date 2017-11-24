@@ -1,0 +1,47 @@
+---
+- name: Gather variables for each operating system
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+    - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+    - "{{ ansible_distribution | lower }}.yml"
+    - "{{ ansible_os_family | lower }}.yml"
+  tags:
+    - always
+
+- name: Install dnsmasq
+  package:
+    name: dnsmasq
+    state: present
+
+- name: Configure dnsmasq
+  template:
+    src: dnsmasq.conf.j2
+    dest: /etc/dnsmasq.conf
+  notify: restart dnsmasq
+
+- name: Ensure dnsmasq config dir exists
+  file:
+    path: /etc/dnsmasq.d
+    state: directory
+
+- name: Configure records
+  template:
+    src: "records.conf.j2"
+    dest: "/etc/dnsmasq.d/records.conf"
+
+- name: Configure hosts records
+  template:
+    src: "addn_hosts.j2"
+    dest: "/etc/dnsmasq.d/addn_hosts"
+
+- name: Configure MAC mapping
+  template:
+    src: "dhcp_mac.conf.j2"
+    dest: "/etc/dnsmasq.d/dhcp_mac.conf"
+
+- name: Enable dnsmasq
+  service:
+    name: dnsmasq
+    enabled: yes

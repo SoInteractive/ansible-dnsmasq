@@ -1,0 +1,10 @@
+chrony_service_name: "chronyd"
+chrony_conf: "/etc/chrony.conf"
+chrony_keys: "/etc/chrony.keys"
+driftfile: "/var/lib/chrony/chrony.drift"
+logdir: "/var/log/chrony"
+dumpdir: "/var/lib/chrony"
+
+ntpd_service_name: "ntpd"
+ntpd_conf: "/etc/ntp.conf"
+ntpd_driftfile: "/var/lib/ntp/ntp.drift"
