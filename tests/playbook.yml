@@ -12,3 +12,5 @@
 - hosts: all
   roles:
     - ansible-dnsmasq
+  vars:
+    dnsmasq_metrics: True

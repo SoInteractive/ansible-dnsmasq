@@ -6,6 +6,8 @@ dnsmasq_dnssec: False
 
 dnsmasq_domain: "local"
 
+dnsmasq_metrics: False # experimental
+
 dnsmasq_records_a: []
 #dnsmasq_records_a:
 #- name: hostname

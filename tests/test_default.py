@@ -37,11 +37,12 @@ def test_services(host):
         assert s.is_running
 
 
-def test_socket(Socket):
+def test_socket(host):
     present = [
         # "unix:///run/haproxy/admin.sock",
-        "tcp://127.0.0.1:53"
+        "tcp://127.0.0.1:53",
+        "tcp://127.0.0.1:9153"
     ]
     for socket in present:
-        s = Socket(socket)
+        s = host.socket(socket)
         assert s.is_listening

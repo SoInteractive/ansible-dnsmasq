@@ -1,5 +1,12 @@
 ---
 - name: restart dnsmasq
-  service:
+  systemd:
+    daemon-reload: yes
     name: dnsmasq
+    state: restarted
+
+- name: restart metrics service
+  systemd:
+    daemon_reload: yes
+    name: dnsmasq_exporter
     state: restarted

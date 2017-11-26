@@ -30,18 +30,25 @@
   template:
     src: "records.conf.j2"
     dest: "/etc/dnsmasq.d/records.conf"
+  notify: restart dnsmasq
 
 - name: Configure hosts records
   template:
     src: "addn_hosts.j2"
     dest: "/etc/dnsmasq.d/addn_hosts"
+  notify: restart dnsmasq
 
 - name: Configure MAC mapping
   template:
     src: "dhcp_mac.conf.j2"
     dest: "/etc/dnsmasq.d/dhcp_mac.conf"
+  notify: restart dnsmasq
 
 - name: Enable dnsmasq
-  service:
+  systemd:
+    daemon_reload: yes
     name: dnsmasq
     enabled: yes
+
+- include: metrics.yml
+  when: dnsmasq_metrics
