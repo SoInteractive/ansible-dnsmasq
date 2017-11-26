@@ -7,6 +7,8 @@ dnsmasq_dnssec: False
 dnsmasq_domain: "local"
 
 dnsmasq_metrics: False # experimental
+dnsmasq_metrics_address: "localhost:9153"
+dnsmasq_metrics_leases: "/var/lib/misc/dnsmasq.leases"
 
 dnsmasq_records_a: []
 #dnsmasq_records_a:
