@@ -1,4 +1,4 @@
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Hourglass_2.svg" alt="time logo" title="time" align="right" height="60" /></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Dnsmasq_icon.svg/1280px-Dnsmasq_icon.svg.png" alt="dnsmasq logo" title="dnsmasq" align="right" height="60" /></p>
 
 Ansible Role: NTP sync
 ======================
