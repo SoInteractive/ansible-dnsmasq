@@ -1,0 +1,27 @@
+---
+- name: Download dnsmasq_exporter from github and compile it locally
+  become: no
+  shell: "export GOPATH=/tmp/dnsmasq_exporter; go get github.com/google/dnsmasq_exporter"
+  args:
+    creates: /tmp/dnsmasq_exporter
+  run_once: yes
+  delegate_to: localhost
+
+- name: install prometheus exporter
+  copy:
+    src: /tmp/dnsmasq_exporter/bin/dnsmasq_exporter
+    dest: /opt/dnsmasq_exporter
+    mode: 0755
+
+- name: create systemd dnsmasq_exporter service file
+  template:
+    src: dnsmasq_exporter.service.j2
+    dest: /etc/systemd/system/dnsmasq_exporter.service
+  notify:
+  - restart metrics service
+
+- name: ensure metrics service is enabled
+  systemd:
+    daemon_reload: yes
+    name: dnsmasq_exporter
+    enabled: yes

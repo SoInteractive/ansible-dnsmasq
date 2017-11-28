@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+[Unit]
+Description=Dnsmasq metrics exporter
+After=network-online.target
+
+[Service]
+Type=simple
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/opt/dnsmasq_exporter -listen {{ dnsmasq_metrics_address }} -leases_path {{ dnsmasq_metrics_leases }}
+
+SyslogIdentifier=dnsmasq_exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
