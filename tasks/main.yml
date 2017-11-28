@@ -15,6 +15,12 @@
     name: dnsmasq
     state: present
 
+- name: Enable dnsmasq on boot | Debian
+  copy:
+    content: "ENABLED=1"
+    dest: /etc/default/dnsmasq
+  when: ansible_os_family == 'Debian'
+
 - name: Configure dnsmasq
   template:
     src: dnsmasq.conf.j2
