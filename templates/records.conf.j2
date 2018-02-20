@@ -3,7 +3,7 @@
 
 # SRV records
 {% for record in dnsmasq_records_srv %}
-srv-host={{ record.service }},{{ record.address }},{{ record.port }}{{ ',' + record.prio if record.prio is defined else '10' }}{{ ',' + record.weight if record.weight is defined else '1' }}
+srv-host={{ record.service }},{{ record.address }},{{ record.port }},{{ record.prio if record.prio is defined else '10' }},{{ record.weight if record.weight is defined else '1' }}
 {% endfor %}
 
 # PTR records
