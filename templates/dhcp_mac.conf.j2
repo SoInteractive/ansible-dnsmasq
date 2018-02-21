@@ -1,4 +1,10 @@
 # {{ ansible_managed }}
 {% for host in dnsmasq_dhcp_mac %}
+{% if host.name is defined and host.ip is defined %}
 dhcp-host={{ host.mac }},{{ host.name }},{{ host.ip }}
+{% elif host.name is defined %}
+dhcp-host={{ host.mac }},{{ host.name }}
+{% else %}
+dhcp-host={{ host.mac }},{{ host.ip }}
+{% endif %}
 {% endfor %}
