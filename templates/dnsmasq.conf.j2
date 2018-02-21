@@ -28,3 +28,7 @@ dhcp-option=3
 {% if dnsmasq_dhcp_range != {} %}
 dhcp-range={{ dnsmasq_dhcp_range.start }},{{ dnsmasq_dhcp_range.end }}
 {% endif %}
+
+{% for k,v in dnsmasq_custom_entries.items() %}
+{{ k }}={{ v }}
+{% endfor %}
